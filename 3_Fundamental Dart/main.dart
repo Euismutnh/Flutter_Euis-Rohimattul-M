@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'persegi.dart';
 import 'persegi panjang.dart';
-import 'dart:math';
 
 void main() {
   print('Selamat datang di bahasa pemrogramman dart');
