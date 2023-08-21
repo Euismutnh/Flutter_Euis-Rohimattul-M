@@ -14,7 +14,8 @@ void main() {
   print("Luas: ${persegi.hitungLuas()}");
   print("Keliling: ${persegi.hitungKeliling()}");
 
-  stdout.write("\nMasukkan panjang dan lebar persegi panjang : ");
+  stdout.write(
+      "\nMasukkan panjang dan lebar persegi panjang (panjang (spasi) lebar) : ");
   List<String> inputPersegiPanjang = stdin.readLineSync()!.split(" ");
   double panjangPersegiPanjang = double.parse(inputPersegiPanjang[0]);
   double lebarPersegiPanjang = double.parse(inputPersegiPanjang[1]);
