@@ -6,7 +6,7 @@ void main() {
   print('Selamat datang di bahasa pemrogramman dart');
   print(
       'Mari kita menghitung Luas dan keliling dari persegi dan persegi panjang');
-  stdout.write("Masukkan panjang sisi persegi : ");
+  stdout.write("Masukkan panjang sisi persegi: ");
   double sisiPersegi = double.parse(stdin.readLineSync()!);
 
   Persegi persegi = Persegi(sisiPersegi);
@@ -14,8 +14,7 @@ void main() {
   print("Luas: ${persegi.hitungLuas()}");
   print("Keliling: ${persegi.hitungKeliling()}");
 
-  stdout.write(
-      "\nMasukkan panjang dan lebar persegi panjang (panjang (spasi) lebar) : ");
+  stdout.write("\nMasukkan panjang dan lebar persegi panjang : ");
   List<String> inputPersegiPanjang = stdin.readLineSync()!.split(" ");
   double panjangPersegiPanjang = double.parse(inputPersegiPanjang[0]);
   double lebarPersegiPanjang = double.parse(inputPersegiPanjang[1]);
