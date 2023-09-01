@@ -22,7 +22,7 @@ Future<void> main() async {
     }
 
     int faktorial = await hitungFaktorial(bilangan);
-    print("Faktorial dari $bilangan = $faktorial");
+    print("Faktorial $bilangan = $faktorial");
 
     stdout.write("Apakah tetap melanjutkan program? (ya/tidak): ");
     String pilihan = await stdin.readLineSync()!.toLowerCase();
