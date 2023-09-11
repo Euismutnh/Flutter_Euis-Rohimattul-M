@@ -5,19 +5,12 @@ class KelipatanPersekutuanTerkecil extends Matematika {
 
   @override
   int hasil() {
-    return lcm(x, y);
-  }
-
-  int lcm(int a, int b) {
-    return (a * b) ~/ gcd(a, b);
-  }
-
-  int gcd(int a, int b) {
-    while (b != 0) {
-      int remainder = a % b;
-      a = b;
-      b = remainder;
+    int hasil = x;
+    while (true) {
+      if (hasil % x == 0 && hasil % y == 0) {
+        return hasil;
+      }
+      hasil++;
     }
-    return a;
   }
 }
