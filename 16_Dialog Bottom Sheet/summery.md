@@ -1,0 +1,4 @@
+Pada Rabu, 20 September 2023 pembelajaran dilakukan secara  synchronous  bersama mentor via zoom meeting, yang di mulai pada pukul 19.00 - 21.30, dan papa kali ini materi yang dibahas yaitu "Dialog Bottom Sheet" adapun materi yang dibahas didalam nya yaitu sebagai berikut : 
+1. Aplikasi  task management :  untuk menambah dan menghapus kegiatan, pada implementasinya diajarkan cara  membuat aplikasi task management step by step dari membuat folder, menambahkan package provider, sampai ke memvisualisasikan data yang ada.
+2, AlertDialog : seperti pop up nya, jadi pada alertdialog berfungsi untuk menginformasikan mengguna terhadao situasi tertentu, dan membutuhkan method showDialog, pada kali ini di berikan contoh implementasi program alertDialog oleh mentor.
+3. BottomsSheet, yang akan muncul pada bagian bawah layar, dan memerlukan showModalButtomSheet, yang memerlukan  dua properti yaitu context dan builder

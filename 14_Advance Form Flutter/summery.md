@@ -1,0 +1,4 @@
+Pada Jum'at, 15 September 2023 dilakukan  pembelajaran secara synchronnous yang  mana pada hari ini membahasa mengenai  "Advance Form Flutter" adapun materi materi yang dibahas didalam nya yaitu sebagai berikut : 
+1. Cara membuat Date Picker  : menggunakan widget bawaan flutter yaitu showDataPicker, disini menggunakan asyn await, caranya pertama menambahkan packages intl di pubs yml, dependencies, membangun UI  : buildDataPicker, untuk membuat format date yang di tampilkan menggunakan Text(DataFormat ("dd-MM-yyyy"))
+2.  Jika ingin mengatur awal tahun dan akhir tahunnya : menggunakan initialDate :current date, lalu di atur first date dan last datenya, dengan DateTime(tahun) first date, DateTime.(currentDate.year + 5) last date.
+3. Lalu menambahkan color picker pada pubspec.yml, nama package nya yaitu  flutter_collorpicker

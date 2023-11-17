@@ -1,0 +1,8 @@
+Pada senin minggu ke 4 ini hal yang saya lakukan yaitu mengikuti kelas  di jam 19.00 yang mana di hari ini materi yang di bahasa oleh mentor yaitu tentang  "Installation Command Line Interface and Package Management in Flutter"  di pertemuan kali ini mentor  memperaktikan  command apa saja yang di butuhkan pada flutter, yaitu sebagai berikut : 
+1. Flutter doctor untuk mengdentifikasi kelengkapan software yang di butuhkan
+2. Flutter Create, perintah ini digunakan untuk membuat project flutter baru pada direktori yang di inginkan
+3. Flutter run ini merupakan perintah untuk menjalankan project aplikasi dan biasanya jika kita menggunakan flutter run langsung akan di jalankan di chrome, dan jika kita ingin menjalankan nya di virtual device kita maka jalankan terlebih dahulu flutter emulator.
+4. Flutter emulator, seperti yang telah  di jelaskan sebelumnya, flutter emulator ini bertujuan untuk melihat emulator apa saja yang tersedia, dan selanjutnya dapat menjalankan flutter emulator -- launch <nama emulator> untuk menjalankan emulator sebagai virtual device saat running project aplikasi
+5. Ada flutter channel, untuk melihat posisi kita berada di channel mana, atau branch mana
+6. flutter pub, pada flutter pub ada flutter pub add <nama paket> untuk menambahkan packages di dalam dependencies di  pubcs.yml, kemudian ada flutter pub get untuk mendownload  packages yang di perlukan.
+7.  flutter clean 

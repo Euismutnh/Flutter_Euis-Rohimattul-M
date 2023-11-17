@@ -1,0 +1,4 @@
+Pada tanggal  6 September 2023 pembelajaran dilakukan bersama mentor melalui zoom meeting yang membahas mengenai "Platform Widget" adapun topik topik yang di bahas yaitu sebagai berikut : 
+1. Material  app : merupakan widget yang mengemas  seluruh widget  yang ada pada aplikasi, cara penggunaannnya yaitu dengan  mengimport  "import:flutter/material.dart". Widget ini yang digunakan untuk android.  
+2. Lalu untuk strukturnya yaitu ada  home sebagai widget yang pertama kali di buka, atau dapat juga menggunakan route ataupun initialRoute, dan didalam home atau halaman utama terbut memiliki  beberapa properti yaitu ada app bar, navigationBar, body, dan drawer dan menggunakan scaffold. 
+3. Cupertino App : sama halnya dengan material app namun cupertino di gunakan untuk  sistem  IOS , dengan mengimport "import:flutter/cupertino.dart".
