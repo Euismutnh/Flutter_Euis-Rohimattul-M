@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'Praktikum_Advance/soal_prioritas1.dart';
 import 'about_page.dart';
 //import 'widgets/my_row.dart';
-import 'add_contact_page.dart';
+import 'Praktikum_Flutter_Form/Soal_Prioritas 1 & 2/add_contact_page.dart';
 import 'more_information_page.dart';
-import 'interactive_widget.dart'; // Import file AboutPage
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
