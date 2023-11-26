@@ -1,0 +1,1 @@
+jadi pada bagian "File", user akan di arahkan ke halaman Gallery untuk memilih gambar dan akan tersimpan di file berupa nama gambar yang di pilih oleh user ketika user mengklik "Yes".
