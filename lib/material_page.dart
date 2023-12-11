@@ -4,7 +4,7 @@ import 'Praktikum Asset/Soal Praktikum 1/soal_praktikum1.dart';
 import 'Praktikum_Advance/soal_prioritas1.dart';
 import 'Praktikum_Advance/soal_prioritas2_explorasi.dart';
 import 'about_page.dart';
-import 'Praktikum_Flutter_Form/Soal_Prioritas 1 & 2/add_contact_page.dart';
+import 'Praktikum_Flutter_Form/Soal_Prioritas 1,2, eksplorasi/add_contact_page.dart';
 import 'more_information_page.dart';
 
 class HomePage extends StatelessWidget {
