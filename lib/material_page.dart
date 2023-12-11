@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Flutter Layout/flutter_layout.dart';
 import 'Praktikum Asset/Soal Praktikum 1/soal_praktikum1.dart';
 import 'Praktikum_Advance/soal_prioritas1.dart';
 import 'Praktikum_Advance/soal_prioritas2_explorasi.dart';
@@ -169,6 +170,32 @@ class HomePage extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => const InteractiveWidgetPage(),
+              ));
+            },
+          ),
+          const SizedBox(
+            height: 1.0,
+            width: double.infinity,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: Colors.grey,
+              ),
+            ),
+          ),
+          ListTile(
+            contentPadding: const EdgeInsets.all(16.0),
+            title: const Text(
+              'Flutter Layout',
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.blue,
+              ),
+            ),
+            leading: const Icon(Icons.task),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const FlutterLayoutPage(),
               ));
             },
           ),
