@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:provider/provider.dart';
+
+import '../Models_Provider/advancedata.dart';
+import '../Models_Provider/editdialog.dart';
+import '../Praktikum Asset/Soal Praktikum 1/soal_praktikum1.dart';
 
 void main() {
   runApp(const MaterialApp(
-    home: AdvancePage(),
+    home: AdvancePage(
+      onSelectImage: '',
+      selectedFileName: '',
+    ),
   ));
 }
 
 class AdvancePage extends StatefulWidget {
-  const AdvancePage({Key? key}) : super(key: key);
+  const AdvancePage(
+      {Key? key,
+      required String onSelectImage,
+      required String selectedFileName})
+      : super(key: key);
 
   @override
   State<AdvancePage> createState() => _AdvancePageState();
@@ -26,10 +37,16 @@ class _AdvancePageState extends State<AdvancePage> {
 
   @override
   Widget build(BuildContext context) {
+    var contactProvider = Provider.of<ContactProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
-        title: const Text('Advance Form'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: ListView(
         padding: const EdgeInsets.all(20.0),
@@ -228,7 +245,7 @@ class _AdvancePageState extends State<AdvancePage> {
                     const SizedBox(width: 16.0),
                     Expanded(
                       child: GestureDetector(
-                        onTap: () => _selectFile(context),
+                        onTap: () => _selectImageFromGallery(),
                         child: AbsorbPointer(
                           child: TextFormField(
                             controller: fileController,
@@ -252,7 +269,6 @@ class _AdvancePageState extends State<AdvancePage> {
                               ),
                             ),
                             validator: (value) {
-                              // Menerima input kosong untuk file
                               return null;
                             },
                           ),
@@ -282,6 +298,7 @@ class _AdvancePageState extends State<AdvancePage> {
                         contacts.add(contact);
                       });
                       // Clear input fields after submission
+                      contactProvider.addContact(contact);
                       nameController.clear();
                       numberController.clear();
                       dateController.clear();
@@ -312,114 +329,120 @@ class _AdvancePageState extends State<AdvancePage> {
             ),
           ),
           const SizedBox(height: 16.0),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: contacts.asMap().entries.map((entry) {
-              final contact = entry.value;
-              return Container(
-                height: 120,
-                margin: const EdgeInsets.only(bottom: 8.0),
-                decoration: BoxDecoration(
-                  color: contact.containsKey('color')
-                      ? Color(int.parse(contact['color']!))
-                      : Colors.white,
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween, // Ikon di sebelah kanan
-                    children: [
-                      Row(
+          Consumer<ContactProvider>(builder: (context, contactProvider, child) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: contactProvider.contacts.asMap().entries.map((entry) {
+                final int index = entry.key;
+                final contact = entry.value;
+                return GestureDetector(
+                  child: Container(
+                    height: 120,
+                    margin: const EdgeInsets.only(bottom: 8.0),
+                    decoration: BoxDecoration(
+                      color: contact.containsKey('color')
+                          ? Color(int.parse(contact['color']!))
+                          : Colors.white,
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment
+                            .spaceBetween, // Ikon di sebelah kanan
                         children: [
-                          Container(
-                            width: 50,
-                            height: 50,
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Center(
-                              child: Text(
-                                (contact['name']?.isNotEmpty ?? false)
-                                    ? contact['name']![0].toUpperCase()
-                                    : '',
-                                style: const TextStyle(
-                                  color: Colors.purple,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 24,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 8.0),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          Row(
                             children: [
-                              Text(
-                                "Name: ${contact['name']}",
-                                style: const TextStyle(
+                              Container(
+                                width: 50,
+                                height: 50,
+                                decoration: const BoxDecoration(
                                   color: Colors.white,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    (contact['name']?.isNotEmpty ?? false)
+                                        ? contact['name']![0].toUpperCase()
+                                        : '',
+                                    style: const TextStyle(
+                                      color: Colors.purple,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 24,
+                                    ),
+                                  ),
                                 ),
                               ),
-                              Text(
-                                "Number: ${contact['number']}",
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                ),
+                              const SizedBox(width: 8.0),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Name: ${contact['name']}",
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Number: ${contact['number']}",
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Date: ${(contact['date'])}",
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Color: ${(contact['color'])}",
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  Text(
+                                    "File: ${(contact['file'])}",
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                "Date: ${(contact['date'])}",
-                                style: const TextStyle(
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.edit,
                                   color: Colors.white,
                                 ),
+                                onPressed: () {
+                                  _showEditDialog(
+                                      context, index, contactProvider);
+                                },
                               ),
-                              Text(
-                                "Color: ${(contact['color'])}",
-                                style: const TextStyle(
+                              const SizedBox(width: 0.1),
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.delete,
                                   color: Colors.white,
                                 ),
-                              ),
-                              Text(
-                                "File: ${(contact['file'])}",
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                ),
+                                onPressed: () {
+                                  contactProvider.deleteContact(contact);
+                                },
                               ),
                             ],
                           ),
                         ],
                       ),
-                      Row(
-                        children: [
-                          IconButton(
-                            icon: const Icon(
-                              Icons.edit,
-                              color: Colors.white,
-                            ),
-                            onPressed: () {},
-                          ),
-                          const SizedBox(width: 0.1),
-                          IconButton(
-                            icon: const Icon(
-                              Icons.delete,
-                              color: Colors.white,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                contacts.remove(contact);
-                              });
-                            },
-                          ),
-                        ],
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-              );
-            }).toList(),
-          ),
+                );
+              }).toList(),
+            );
+          }),
         ],
       ),
     );
@@ -471,12 +494,52 @@ class _AdvancePageState extends State<AdvancePage> {
     });
   }
 
-  Future<void> _selectFile(BuildContext context) async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
-    if (result != null) {
-      setState(() {
-        fileController.text = result.files.first.name;
-      });
+  Future<void> _selectImageFromGallery() async {
+    String? selectedFileName = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => GalleryPage(
+          onSelectImage: (selectedFileName) {
+            setState(() {
+              fileController.text = selectedFileName;
+            });
+          },
+        ),
+      ),
+    );
+
+    if (selectedFileName != null) {}
+  }
+
+  Future<void> _showEditDialog(
+    BuildContext context,
+    int index,
+    ContactProvider contactProvider,
+  ) async {
+    Map<String, String> initialContact = contactProvider.contacts[index];
+
+    Map<String, String>? updatedContact = await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return EditContactDialog(
+          initialContact: initialContact,
+        );
+      },
+    );
+
+    if (updatedContact != null) {
+      // Hanya update field yang diubah
+      if (updatedContact.containsKey('name')) {
+        initialContact['name'] = updatedContact['name']!;
+      }
+      if (updatedContact.containsKey('number')) {
+        initialContact['number'] = updatedContact['number']!;
+      }
+      if (updatedContact.containsKey('date')) {
+        initialContact['date'] = updatedContact['date']!;
+      }
+
+      contactProvider.editContact(index, initialContact);
     }
   }
 }

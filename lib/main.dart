@@ -1,9 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'Models_Provider/advancedata.dart';
+import 'Models_Provider/gallery_data.dart';
 import 'material_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ContactProvider>(
+            create: (_) => ContactProvider()),
+        ChangeNotifierProvider<GalleryProvider>(
+            create: (_) => GalleryProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
