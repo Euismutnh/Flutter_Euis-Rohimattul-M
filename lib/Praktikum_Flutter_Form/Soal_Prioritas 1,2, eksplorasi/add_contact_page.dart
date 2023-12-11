@@ -10,8 +10,7 @@ class AddContactPage extends StatefulWidget {
   const AddContactPage({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
-  _AddContactPageState createState() => _AddContactPageState();
+  State<AddContactPage> createState() => _AddContactPageState();
 }
 
 class _AddContactPageState extends State<AddContactPage> {
@@ -64,6 +63,12 @@ class _AddContactPageState extends State<AddContactPage> {
                 TextFormField(
                   controller: nameController,
                   decoration: InputDecoration(
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepPurple),
+                    ),
+                    enabledBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepPurple),
+                    ),
                     hintText: "Insert Your Name",
                     labelText: "Name",
                     icon: const Icon(Icons.person),
@@ -76,7 +81,11 @@ class _AddContactPageState extends State<AddContactPage> {
                   ),
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'Nama tidak boleh kosong';
+                      return 'Name cannot be empty';
+                    }
+                    if (!RegExp(r'^[A-Z][a-z]*(?: [A-Z][a-z]*)?$')
+                        .hasMatch(value)) {
+                      return 'Name must consist of at least 2 words, each starting with a capital letter, and contain only letters';
                     }
                     return null;
                   },
@@ -86,7 +95,13 @@ class _AddContactPageState extends State<AddContactPage> {
                   controller: numberController,
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
-                    hintText: "+62...",
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepPurple),
+                    ),
+                    enabledBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepPurple),
+                    ),
+                    hintText: "08...",
                     labelText: "Number",
                     icon: const Icon(Icons.phone),
                     border: OutlineInputBorder(
@@ -98,15 +113,17 @@ class _AddContactPageState extends State<AddContactPage> {
                   ),
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'Nomor tidak boleh kosong';
+                      return 'Number cannot be empty';
+                    }
+                    if (!RegExp(r'^08[0-9]{8,15}$').hasMatch(value)) {
+                      return 'Number must consist of digits, be at least 8 digits, at most 15 digits, and start with "08"';
                     }
                     return null;
                   },
                 ),
                 const SizedBox(height: 16.0),
                 Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.end, // Tombol Submit di sebelah kanan
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ElevatedButton(
                       onPressed: () {
@@ -172,8 +189,7 @@ class _AddContactPageState extends State<AddContactPage> {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween, // Ikon di sebelah kanan
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
                         children: [
