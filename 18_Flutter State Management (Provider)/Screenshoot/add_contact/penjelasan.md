@@ -1,0 +1,1 @@
+jadi pada list contact ini sudah berhasil memfungsikan tombol edit dan delete, dalam hal ini menggunakan provider untuk menyimpan data dari addContact, editContact, dan removeContact. Dan untuk class AddContact sendiri sudah menggunakan multiprovider yang di letakan pada file main

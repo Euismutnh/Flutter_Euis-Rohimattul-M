@@ -1,0 +1,4 @@
+1. Definisi OpenAI : Sebuah library yang dapat digunakan untuk memanfaatkan teknologi AI yang di sediakan oleh OpenAI, yang mana library ini nantinya dapat di integrasikan dengan berbagai aplikasi seperti API, web, dan mmobile. 
+2. Adapun keuntungan dari OpenAI ialah gratis, mudah di pasang, dapat digunakan di berbagai perangkat, jumlah parameternya 175 miliar.
+3. Project Overview : mengembangkan sebuah aplikasi mobile untuk mendapatkan rekomendasi mobil berdasarkan asal merk dan dana yang dimiliki.
+4. Project Example ini dijelaskan mengenai cara memasang OpenAI pada project aplikasi yang ingin dikembangkan.
