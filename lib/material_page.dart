@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Flutter Layout/flutter_layout.dart';
 import 'Praktikum Asset/Soal Praktikum 1/soal_praktikum1.dart';
 import 'Praktikum_Advance/soal_prioritas1.dart';
 import 'Praktikum_Advance/soal_prioritas2_explorasi.dart';
+import 'Praktikum_Flutter_Form/Soal_Prioritas 1 & 2/add_contact_page.dart';
+import 'Storage/login.dart';
 import 'about_page.dart';
-import 'Praktikum_Flutter_Form/Soal_Prioritas 1,2, eksplorasi/add_contact_page.dart';
 import 'more_information_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
+  Future<void> _logout(BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+
+    // ignore: use_build_context_synchronously
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const Login()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,6 +110,30 @@ class HomePage extends StatelessWidget {
                     onSelectImage: (String selectedFileName) {},
                   ),
                 ));
+              },
+            ),
+            ListTile(
+              title: const Text(
+                'Login',
+                style: TextStyle(
+                  color: Colors.deepPurple,
+                ),
+              ),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const Login(),
+                ));
+              },
+            ),
+            ListTile(
+              title: const Text(
+                'Logout',
+                style: TextStyle(
+                  color: Colors.deepPurple,
+                ),
+              ),
+              onTap: () {
+                _logout(context);
               },
             ),
           ],

@@ -129,7 +129,9 @@ class GalleryNewPage extends StatelessWidget {
     );
 
     if (newName != null && newName is String) {
+      // ignore: use_build_context_synchronously
       context.read<GalleryBloc>().add(EditPhotoEvent(index, newName));
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Photo name edited successfully to $newName'),
