@@ -1,7 +1,12 @@
-import 'package:drift/drift.dart';
+import 'dart:io';
 
-import 'login_data.dart';
-import 'regis_data.dart';
+// database.dart
+import 'package:drift/drift.dart';
+import 'package:drift/native.dart';
+import 'package:flutter_project_euis/Storage/database/login_data.dart';
+import 'package:flutter_project_euis/Storage/database/regis_data.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as p;
 
 part 'database.g.dart';
 
@@ -9,8 +14,19 @@ part 'database.g.dart';
   tables: [Logins, Registrations],
 )
 class AppDb extends _$AppDb {
-  AppDb(QueryExecutor e) : super(e);
+  AppDb() : super(_openConnection());
 
-  @override
-  int get schemaVersion => 14;
+  int get schemaVersion => 16;
+}
+
+LazyDatabase _openConnection() {
+  // the LazyDatabase util lets us find the right location for the file async.
+  return LazyDatabase(() async {
+    // put the database file, called db.sqlite here, into the documents folder
+    // for your app.
+    final dbFolder = await getApplicationDocumentsDirectory();
+    final file = File(p.join(dbFolder.path, 'db.sqlite'));
+
+    return NativeDatabase.createInBackground(file);
+  });
 }

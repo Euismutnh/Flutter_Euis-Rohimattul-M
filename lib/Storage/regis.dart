@@ -36,7 +36,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
         _apiCall = true;
       });
 
-      // Simpan data registrasi menggunakan SharedPreferences
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('email', email);
       prefs.setString('password', password);
