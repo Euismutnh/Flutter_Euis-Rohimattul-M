@@ -6,8 +6,7 @@ import 'gallery_state.dart';
 // gallery_bloc.dart
 
 class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
-  GalleryBloc()
-      : super(GalleryState(imageAsset: const [], newImageAsset: const []));
+  GalleryBloc() : super(const GalleryState(imageAsset: [], newImageAsset: []));
 
   Stream<GalleryState> mapEventToState(GalleryEvent event) async* {
     if (event is EditPhotoEvent) {
